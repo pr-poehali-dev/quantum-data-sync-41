@@ -9,7 +9,7 @@ export function Footer() {
               <img src="/images/hously-logo.svg" alt="Пространство" width={120} height={32} className="w-auto h-6" />
             </a>
             <p className="text-muted-foreground leading-relaxed max-w-sm">
-              Создаем пространства для жизни. Архитектурный опыт, где форма, свет и намерение встречаются.
+              Архитектурная студия. Проектируем дома, офисы и целые кварталы — с вниманием к каждой детали и уважением к человеку, который в них живёт.
             </p>
           </div>
 

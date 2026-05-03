@@ -9,13 +9,13 @@ export function CallToAction() {
           <p className="text-primary-foreground/60 text-sm tracking-[0.3em] uppercase mb-8">Начать проект</p>
 
           <h2 className="text-3xl md:text-4xl lg:text-6xl font-medium leading-[1.1] tracking-tight mb-8 text-balance">
-            Готовы создать
+            У вас есть идея.
             <br />
-            нечто <HighlightedText>выдающееся</HighlightedText>?
+            Мы знаем, как её <HighlightedText>построить</HighlightedText>.
           </h2>
 
           <p className="text-primary-foreground/70 text-lg md:text-xl leading-relaxed mb-12 max-w-2xl mx-auto">
-            Давайте обсудим, как воплотить вашу идею в жизнь. Каждое великое пространство начинается с разговора.
+            Расскажите нам о своём проекте — на первой консультации мы честно оценим его потенциал и предложим концепцию. Бесплатно.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
