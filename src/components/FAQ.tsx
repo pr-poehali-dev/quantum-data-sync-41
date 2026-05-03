@@ -1,82 +1,106 @@
 import { useState } from "react"
-import { Plus } from "lucide-react"
+import Icon from "@/components/ui/icon"
 
 const faqs = [
   {
-    question: "С чего начинается работа над проектом?",
-    answer:
-      "Всё начинается с разговора. На первой встрече мы слушаем: о вас, об участке, о том, каким вы видите результат. Мы не торопимся с решениями — нам важно понять контекст. После консультации готовим краткое описание концепции и коммерческое предложение.",
+    question: "Какой проходной балл ЕГЭ нужен для поступления?",
+    answer: "Минимальный балл зависит от направления. Для лечебного факультета в 2024 году на бюджет — от 232 баллов (биология + химия + русский язык). Точные цифры публикуются ежегодно в июле на сайте приёмной комиссии.",
   },
   {
-    question: "Сколько стоят ваши услуги?",
-    answer:
-      "Стоимость зависит от типа и масштаба объекта. Проектирование частного дома, как правило, начинается от 3 000 ₽/м². Коммерческие и девелоперские проекты рассчитываются индивидуально. Первая консультация — бесплатно.",
+    question: "Есть ли общежитие для студентов?",
+    answer: "Да. КрасГМУ располагает несколькими общежитиями в Красноярске. Иногородние студенты, зачисленные на бюджет, обеспечиваются жильём в приоритетном порядке. Стоимость проживания — от 1 200 ₽ в месяц.",
   },
   {
-    question: "Как долго длится проектирование?",
-    answer:
-      "Частный дом площадью до 300 м² — от 4 до 8 месяцев. Коммерческий объект — от 6 до 18 месяцев. Мы всегда согласовываем реалистичные сроки на старте и придерживаемся их: дорожим своей репутацией.",
+    question: "Можно ли поступить после медицинского колледжа?",
+    answer: "Да. Выпускники медицинских колледжей могут поступить на основе ЕГЭ на общих основаниях или пройти вступительные испытания, проводимые вузом. Предусмотрены квоты для лиц со средним профессиональным образованием.",
   },
   {
-    question: "Вы ведёте авторский надзор во время строительства?",
-    answer:
-      "Да. Авторский надзор — отдельная услуга, которую мы настоятельно рекомендуем. Он гарантирует, что строители реализуют проект именно так, как задумано. Мы выезжаем на объект на ключевых этапах и оперативно решаем вопросы, которые возникают в процессе.",
+    question: "Как проходит целевое обучение?",
+    answer: "Целевое обучение — это поступление по договору с работодателем (больницей, региональным Минздравом). После окончания вы обязаны отработать 3–5 лет по месту направления. Взамен — гарантированное место на бюджете и поддержка во время учёбы.",
   },
   {
-    question: "В каких городах вы работаете?",
-    answer:
-      "Наша студия базируется в Москве, но мы реализуем проекты по всей России. Для выездных проектов организуем регулярные посещения объекта и поддерживаем тесный контакт с заказчиком.",
+    question: "Есть ли программы для иностранных граждан?",
+    answer: "Да. КрасГМУ принимает иностранных студентов по квоте Правительства РФ и на коммерческой основе. Обучение ведётся на русском языке, предусмотрен подготовительный курс. Есть программа для англоязычных абитуриентов.",
   },
   {
-    question: "Работаете ли вы с реконструкцией и перепланировкой?",
-    answer:
-      "Да, и это одно из наших любимых направлений. Вдохнуть новую жизнь в существующее здание, сохранив его характер — сложная и увлекательная задача. Мы работаем как с историческими объектами, так и с типовыми постройками советского периода.",
+    question: "Какова стоимость платного обучения?",
+    answer: "Стоимость платного обучения в 2025 году: лечебный и педиатрический факультеты — от 220 000 ₽/год; стоматология — от 280 000 ₽/год; фармация — от 175 000 ₽/год. Предусмотрена рассрочка платежа.",
   },
 ]
 
 export function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
-
-  const toggleQuestion = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="py-20 md:py-29">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="max-w-3xl mb-16">
-          <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-6">Вопросы</p>
-          <h2 className="text-6xl font-medium leading-[1.15] tracking-tight mb-6 text-balance lg:text-7xl">
-            Частые вопросы
-          </h2>
-        </div>
-
-        <div>
-          {faqs.map((faq, index) => (
-            <div key={index} className="border-b border-border">
-              <button
-                onClick={() => toggleQuestion(index)}
-                className="w-full py-6 flex items-start justify-between gap-6 text-left group"
-              >
-                <span className="text-lg font-medium text-foreground transition-colors group-hover:text-foreground/70">
-                  {faq.question}
-                </span>
-                <Plus
-                  className={`w-6 h-6 text-foreground flex-shrink-0 transition-transform duration-300 ${
-                    openIndex === index ? "rotate-45" : "rotate-0"
-                  }`}
-                  strokeWidth={1.5}
-                />
-              </button>
-              <div
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                  openIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                }`}
-              >
-                <p className="text-muted-foreground leading-relaxed pb-6 pr-12">{faq.answer}</p>
-              </div>
+    <section id="faq" className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-[2fr_1fr] gap-12">
+          <div>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-1 h-8 bg-[hsl(345,75%,28%)] rounded-full" />
+              <h2 className="text-2xl font-bold text-gray-900">Часто задаваемые вопросы</h2>
             </div>
-          ))}
+
+            <div className="space-y-3">
+              {faqs.map((faq, index) => (
+                <div
+                  key={index}
+                  className={`rounded-xl border-2 transition-all duration-200 overflow-hidden ${openIndex === index ? "border-[hsl(345,75%,28%)] bg-white shadow-sm" : "border-gray-100 bg-white hover:border-gray-200"}`}
+                >
+                  <button
+                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                    className="w-full px-6 py-5 flex items-start justify-between gap-4 text-left"
+                  >
+                    <span className={`font-semibold text-sm leading-snug transition-colors ${openIndex === index ? "text-[hsl(345,75%,28%)]" : "text-gray-800"}`}>
+                      {faq.question}
+                    </span>
+                    <div className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 ${openIndex === index ? "bg-[hsl(345,75%,28%)] text-white rotate-45" : "bg-gray-100 text-gray-500"}`}>
+                      <Icon name="Plus" size={16} />
+                    </div>
+                  </button>
+                  <div className={`transition-all duration-300 overflow-hidden ${openIndex === index ? "max-h-64 opacity-100" : "max-h-0 opacity-0"}`}>
+                    <p className="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{faq.answer}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div className="flex flex-col gap-5">
+            <div className="rounded-xl bg-[hsl(345,75%,28%)] p-7 text-white">
+              <Icon name="Phone" size={28} className="mb-4 opacity-80" />
+              <h3 className="font-bold text-lg mb-2">Приёмная комиссия</h3>
+              <p className="text-white/75 text-sm mb-5">Пн–Пт: 9:00–18:00<br />Сб: 10:00–14:00</p>
+              <a
+                href="tel:+73912212121"
+                className="block text-center bg-white text-[hsl(345,75%,28%)] font-bold py-3 rounded-lg hover:bg-white/90 transition-colors text-sm"
+              >
+                +7 (391) 221-21-21
+              </a>
+            </div>
+
+            <div className="rounded-xl border-2 border-gray-100 bg-white p-7">
+              <Icon name="MapPin" size={24} className="text-[hsl(345,75%,28%)] mb-4" />
+              <h3 className="font-bold text-gray-900 mb-2">Адрес</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                г. Красноярск,<br />
+                ул. Партизана Железняка, 1<br />
+                660022
+              </p>
+            </div>
+
+            <div className="rounded-xl border-2 border-gray-100 bg-white p-7">
+              <Icon name="Mail" size={24} className="text-[hsl(345,75%,28%)] mb-4" />
+              <h3 className="font-bold text-gray-900 mb-2">Email</h3>
+              <a
+                href="mailto:priem@krasgmu.ru"
+                className="text-[hsl(345,75%,28%)] text-sm font-medium hover:underline"
+              >
+                priem@krasgmu.ru
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

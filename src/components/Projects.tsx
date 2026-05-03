@@ -1,120 +1,115 @@
-import { useState, useEffect, useRef } from "react"
-import { ArrowUpRight } from "lucide-react"
+import Icon from "@/components/ui/icon"
 
-const projects = [
+const faculties = [
   {
-    id: 1,
-    title: "Резиденция Светлая",
-    category: "Жилой дом",
-    location: "Москва, Россия",
-    year: "2024",
-    image: "/images/hously-1.png",
+    icon: "Stethoscope",
+    name: "Лечебный факультет",
+    description: "Специальность «Лечебное дело». Подготовка врачей широкого профиля.",
+    duration: "6 лет",
+    budget: "Есть бюджет",
+    color: "bg-blue-50 border-blue-100",
+    iconColor: "text-blue-600 bg-blue-100",
   },
   {
-    id: 2,
-    title: "Павильон Стекло",
-    category: "Коммерческий объект",
-    location: "Санкт-Петербург, Россия",
-    year: "2023",
-    image: "/images/hously-2.png",
+    icon: "Baby",
+    name: "Педиатрический факультет",
+    description: "Специальность «Педиатрия». Врачи для детей от рождения до 18 лет.",
+    duration: "6 лет",
+    budget: "Есть бюджет",
+    color: "bg-green-50 border-green-100",
+    iconColor: "text-green-600 bg-green-100",
   },
   {
-    id: 3,
-    title: "Дом у моря",
-    category: "Жилой дом",
-    location: "Сочи, Россия",
-    year: "2023",
-    image: "/images/hously-3.png",
+    icon: "Smile",
+    name: "Стоматологический факультет",
+    description: "Специальность «Стоматология». Все направления стоматологии.",
+    duration: "5 лет",
+    budget: "Есть бюджет",
+    color: "bg-purple-50 border-purple-100",
+    iconColor: "text-purple-600 bg-purple-100",
   },
   {
-    id: 4,
-    title: "Северный приют",
-    category: "Гостиничный комплекс",
-    location: "Казань, Россия",
-    year: "2024",
-    image: "/images/hously-4.png",
+    icon: "FlaskConical",
+    name: "Фармацевтический факультет",
+    description: "Специальность «Фармация». Разработка и производство лекарств.",
+    duration: "5 лет",
+    budget: "Есть бюджет",
+    color: "bg-orange-50 border-orange-100",
+    iconColor: "text-orange-600 bg-orange-100",
+  },
+  {
+    icon: "Activity",
+    name: "Клиническая психология",
+    description: "Специальность «Клиническая психология». Психическое здоровье.",
+    duration: "5 лет 6 мес",
+    budget: "Есть бюджет",
+    color: "bg-pink-50 border-pink-100",
+    iconColor: "text-pink-600 bg-pink-100",
+  },
+  {
+    icon: "HeartPulse",
+    name: "Социальная работа",
+    description: "Бакалавриат. Медико-социальная помощь населению.",
+    duration: "4 года",
+    budget: "Есть бюджет",
+    color: "bg-teal-50 border-teal-100",
+    iconColor: "text-teal-600 bg-teal-100",
   },
 ]
 
 export function Projects() {
-  const [hoveredId, setHoveredId] = useState<number | null>(null)
-  const [revealedImages, setRevealedImages] = useState<Set<number>>(new Set())
-  const imageRefs = useRef<(HTMLDivElement | null)[]>([])
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = imageRefs.current.indexOf(entry.target as HTMLDivElement)
-            if (index !== -1) {
-              setRevealedImages((prev) => new Set(prev).add(projects[index].id))
-            }
-          }
-        })
-      },
-      { threshold: 0.2 },
-    )
-
-    imageRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref)
-    })
-
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section id="projects" className="py-32 md:py-29 bg-secondary/50">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-          <div>
-            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-6">Избранные работы</p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight">Наши проекты</h2>
+    <section id="admission" className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center gap-3">
+            <div className="w-1 h-8 bg-[hsl(345,75%,28%)] rounded-full" />
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900">Факультеты и направления</h2>
+              <p className="text-gray-500 text-sm mt-1">Выберите свой путь в медицине</p>
+            </div>
           </div>
           <a
-            href="#"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+            href="#all-faculties"
+            className="hidden md:inline-flex items-center gap-2 bg-[hsl(345,75%,28%)] text-white text-sm font-medium px-5 py-2.5 rounded hover:bg-[hsl(345,75%,22%)] transition-colors"
           >
-            Смотреть все проекты
-            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <Icon name="BookOpen" size={15} />
+            Все программы
           </a>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-          {projects.map((project, index) => (
-            <article
-              key={project.id}
-              className="group cursor-pointer"
-              onMouseEnter={() => setHoveredId(project.id)}
-              onMouseLeave={() => setHoveredId(null)}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {faculties.map((faculty) => (
+            <a
+              key={faculty.name}
+              href="#"
+              className={`group flex flex-col gap-4 p-6 rounded-xl border-2 ${faculty.color} hover:shadow-md transition-all duration-200 hover:-translate-y-0.5`}
             >
-              <div ref={(el) => (imageRefs.current[index] = el)} className="relative overflow-hidden aspect-[4/3] mb-6">
-                <img
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title}
-                  className={`w-full h-full object-cover transition-transform duration-700 ${
-                    hoveredId === project.id ? "scale-105" : "scale-100"
-                  }`}
-                />
-                <div
-                  className="absolute inset-0 bg-primary origin-top"
-                  style={{
-                    transform: revealedImages.has(project.id) ? "scaleY(0)" : "scaleY(1)",
-                    transition: "transform 1.5s cubic-bezier(0.76, 0, 0.24, 1)",
-                  }}
-                />
+              <div className="flex items-start justify-between">
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${faculty.iconColor}`}>
+                  <Icon name={faculty.icon} size={22} />
+                </div>
+                <Icon name="ArrowUpRight" size={18} className="text-gray-300 group-hover:text-[hsl(345,75%,28%)] transition-colors" />
               </div>
 
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="text-xl font-medium mb-2 group-hover:underline underline-offset-4">{project.title}</h3>
-                  <p className="text-muted-foreground text-sm">
-                    {project.category} · {project.location}
-                  </p>
-                </div>
-                <span className="text-muted-foreground/60 text-sm">{project.year}</span>
+              <div>
+                <h3 className="font-bold text-gray-900 mb-2 group-hover:text-[hsl(345,75%,28%)] transition-colors">
+                  {faculty.name}
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{faculty.description}</p>
               </div>
-            </article>
+
+              <div className="flex items-center gap-3 mt-auto pt-3 border-t border-white/60">
+                <div className="flex items-center gap-1 text-xs text-gray-500">
+                  <Icon name="Clock" size={13} />
+                  {faculty.duration}
+                </div>
+                <div className="flex items-center gap-1 text-xs text-green-700 font-medium">
+                  <Icon name="CheckCircle" size={13} />
+                  {faculty.budget}
+                </div>
+              </div>
+            </a>
           ))}
         </div>
       </div>

@@ -1,37 +1,79 @@
-import { ArrowRight } from "lucide-react"
-import { HighlightedText } from "./HighlightedText"
+import Icon from "@/components/ui/icon"
+
+const links = [
+  { icon: "BookOpen", label: "Расписание занятий", href: "#" },
+  { icon: "GraduationCap", label: "Электронный деканат", href: "#" },
+  { icon: "Library", label: "Электронная библиотека", href: "#" },
+  { icon: "Wifi", label: "Дистанционное обучение", href: "#" },
+  { icon: "Award", label: "Портфолио студента", href: "#" },
+  { icon: "Users", label: "Студенческий совет", href: "#" },
+]
 
 export function CallToAction() {
   return (
-    <section id="contact" className="py-32 md:py-29 bg-foreground text-primary-foreground">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-primary-foreground/60 text-sm tracking-[0.3em] uppercase mb-8">Начать проект</p>
+    <section id="students" className="py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-14 items-center">
+          {/* Left content */}
+          <div>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-1 h-8 bg-[hsl(345,75%,28%)] rounded-full" />
+              <p className="text-sm font-semibold tracking-widest uppercase text-[hsl(345,75%,28%)]">Для студентов</p>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5 leading-tight">
+              Всё необходимое<br />в одном месте
+            </h2>
+            <p className="text-gray-500 text-lg leading-relaxed mb-8">
+              Личный кабинет, расписание, библиотека, документы — получите доступ к сервисам КрасГМУ без очередей.
+            </p>
 
-          <h2 className="text-3xl md:text-4xl lg:text-6xl font-medium leading-[1.1] tracking-tight mb-8 text-balance">
-            У вас есть идея.
-            <br />
-            Мы знаем, как её <HighlightedText>построить</HighlightedText>.
-          </h2>
+            <div className="grid grid-cols-2 gap-3">
+              {links.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="group flex items-center gap-3 p-4 rounded-xl border-2 border-gray-100 hover:border-[hsl(345,75%,28%)] hover:bg-red-50/30 transition-all duration-200"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-[hsl(345,75%,95%)] flex items-center justify-center shrink-0 group-hover:bg-[hsl(345,75%,28%)] transition-colors">
+                    <Icon name={link.icon} size={17} className="text-[hsl(345,75%,28%)] group-hover:text-white transition-colors" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-700 group-hover:text-[hsl(345,75%,28%)] transition-colors leading-snug">
+                    {link.label}
+                  </span>
+                </a>
+              ))}
+            </div>
 
-          <p className="text-primary-foreground/70 text-lg md:text-xl leading-relaxed mb-12 max-w-2xl mx-auto">
-            Расскажите нам о своём проекте — на первой консультации мы честно оценим его потенциал и предложим концепцию. Бесплатно.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:hello@prostranstvo.ru"
-              className="inline-flex items-center justify-center gap-3 bg-primary-foreground text-foreground px-8 py-4 text-sm tracking-wide hover:bg-primary-foreground/90 transition-colors duration-300 group"
+              href="#"
+              className="mt-8 inline-flex items-center justify-center gap-2 bg-[hsl(345,75%,28%)] text-white font-semibold px-8 py-4 rounded-lg hover:bg-[hsl(345,75%,22%)] transition-colors"
             >
-              Начать диалог
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              <Icon name="LogIn" size={18} />
+              Войти в личный кабинет
             </a>
-            <a
-              href="tel:+74951234567"
-              className="inline-flex items-center justify-center gap-2 border border-primary-foreground/30 px-8 py-4 text-sm tracking-wide hover:bg-primary-foreground/10 transition-colors duration-300"
-            >
-              Назначить звонок
-            </a>
+          </div>
+
+          {/* Right — image + stats */}
+          <div className="relative">
+            <div className="rounded-2xl overflow-hidden">
+              <img
+                src="https://cdn.poehali.dev/projects/10314730-e5f5-4420-9775-f734c4efc3b5/files/245b130d-d6ee-4574-9d12-c044e3662d8b.jpg"
+                alt="Студенты КрасГМУ"
+                className="w-full object-cover"
+                style={{ height: 420 }}
+              />
+            </div>
+
+            {/* Floating card */}
+            <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-5 flex items-center gap-4 border border-gray-100">
+              <div className="w-14 h-14 rounded-xl bg-[hsl(345,75%,28%)] flex items-center justify-center">
+                <Icon name="TrendingUp" size={26} className="text-white" />
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-gray-900">95%</div>
+                <div className="text-sm text-gray-500">трудоустройство<br />выпускников</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

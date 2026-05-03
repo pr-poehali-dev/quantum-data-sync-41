@@ -1,103 +1,92 @@
-import { useEffect, useRef, useState } from "react"
-import { Home, Building, Armchair, Trees } from "lucide-react"
-import { HighlightedText } from "./HighlightedText"
+import Icon from "@/components/ui/icon"
 
-const expertiseAreas = [
+const advantages = [
   {
-    title: "Жилая архитектура",
-    description: "Частные дома и резиденции, в которых красота неотделима от удобства. Проектируем под образ жизни конкретной семьи — от генплана до ручки на двери.",
-    icon: Home,
+    icon: "Trophy",
+    title: "Топ-20 медвузов России",
+    description: "По версии RAEX рейтингового агентства. Признанное качество образования.",
   },
   {
-    title: "Коммерческие объекты",
-    description:
-      "Офисы, отели, рестораны и торговые пространства, которые работают на бизнес: привлекают клиентов, удерживают сотрудников и создают репутацию.",
-    icon: Building,
+    icon: "Building2",
+    title: "50+ клинических баз",
+    description: "Практика в ведущих больницах Красноярска с первого курса обучения.",
   },
   {
-    title: "Дизайн интерьеров",
-    description:
-      "Интерьер как продолжение архитектуры. Разрабатываем пространство изнутри: отделка, свет, мебель, акустика — всё в единой концепции.",
-    icon: Armchair,
+    icon: "Globe",
+    title: "Международное сотрудничество",
+    description: "Партнёрство с университетами 30 стран. Программы обмена и стажировки.",
   },
   {
-    title: "Девелоперские проекты",
-    description:
-      "Комплексное проектирование жилых кварталов, апартаментов и mixed-use объектов. От мастер-плана до авторского надзора за строительством.",
-    icon: Trees,
+    icon: "Microscope",
+    title: "Современная наука",
+    description: "Центр коллективного пользования. Гранты РНФ, РФФИ и международные проекты.",
+  },
+  {
+    icon: "Users",
+    title: "Сильное сообщество",
+    description: "40 000+ выпускников по всему миру. Активная alumni-сеть и менторство.",
+  },
+  {
+    icon: "Heart",
+    title: "Студенческая жизнь",
+    description: "Волонтёрство, спорт, культура и самоуправление. Учёба — это больше, чем лекции.",
   },
 ]
 
 export function Expertise() {
-  const [visibleItems, setVisibleItems] = useState<number[]>([])
-  const sectionRef = useRef<HTMLElement>(null)
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([])
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const index = Number(entry.target.getAttribute("data-index"))
-          if (entry.isIntersecting) {
-            setVisibleItems((prev) => [...new Set([...prev, index])])
-          }
-        })
-      },
-      { threshold: 0.2 },
-    )
-
-    itemRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref)
-    })
-
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section id="services" ref={sectionRef} className="py-32 md:py-29">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="max-w-3xl mb-20">
-          <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-6">Наши услуги</p>
-          <h2 className="text-6xl font-medium leading-[1.15] tracking-tight mb-6 text-balance lg:text-8xl">
-            <HighlightedText>Экспертиза</HighlightedText>, отточенная
-            <br />
-            практикой
+    <section id="science" className="py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="max-w-2xl mb-14">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-1 h-8 bg-[hsl(345,75%,28%)] rounded-full" />
+            <p className="text-sm font-semibold tracking-widest uppercase text-[hsl(345,75%,28%)]">Почему КрасГМУ</p>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">
+            85 лет готовим врачей,<br />которым доверяют жизни
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            Мы берёмся за проекты любой сложности — от частного загородного дома до многофункционального городского комплекса. Каждый раз привносим то же внимание к деталям и ту же строгость мышления.
+          <p className="text-gray-500 text-lg leading-relaxed">
+            Красноярский государственный медицинский университет — это не просто диплом. Это сообщество, наука и призвание.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-x-12 gap-y-16">
-          {expertiseAreas.map((area, index) => {
-            const Icon = area.icon
-            return (
-              <div
-                key={area.title}
-                ref={(el) => {
-                  itemRefs.current[index] = el
-                }}
-                data-index={index}
-                className={`relative pl-8 border-l border-border transition-all duration-700 ${
-                  visibleItems.includes(index) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                }`}
-                style={{ transitionDelay: `${index * 150}ms` }}
-              >
-                <div
-                  className={`transition-all duration-1000 ${
-                    visibleItems.includes(index) ? "animate-draw-stroke" : ""
-                  }`}
-                  style={{
-                    transitionDelay: `${index * 150}ms`,
-                  }}
-                >
-                  <Icon className="w-10 h-10 mb-4 text-foreground" strokeWidth={1.25} />
-                </div>
-                <h3 className="text-xl font-medium mb-4">{area.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{area.description}</p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {advantages.map((item, i) => (
+            <div key={item.title} className="group flex gap-5">
+              <div className="shrink-0 w-12 h-12 rounded-xl bg-[hsl(345,75%,95%)] flex items-center justify-center group-hover:bg-[hsl(345,75%,28%)] transition-colors duration-300">
+                <Icon name={item.icon} size={22} className="text-[hsl(345,75%,28%)] group-hover:text-white transition-colors duration-300" />
               </div>
-            )
-          })}
+              <div>
+                <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Banner */}
+        <div className="mt-14 rounded-2xl bg-[hsl(345,75%,28%)] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="text-white">
+            <h3 className="text-2xl font-bold mb-2">Приёмная кампания 2025</h3>
+            <p className="text-white/75 text-base">Приём документов начинается 20 июня. Не пропустите сроки!</p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 shrink-0">
+            <a
+              href="#admission"
+              className="inline-flex items-center justify-center gap-2 bg-white text-[hsl(345,75%,28%)] font-semibold px-7 py-3.5 rounded-lg hover:bg-white/90 transition-colors"
+            >
+              <Icon name="FileText" size={17} />
+              Подать документы
+            </a>
+            <a
+              href="#"
+              className="inline-flex items-center justify-center gap-2 border-2 border-white/40 text-white font-medium px-7 py-3.5 rounded-lg hover:border-white transition-colors"
+            >
+              <Icon name="Phone" size={17} />
+              Задать вопрос
+            </a>
+          </div>
         </div>
       </div>
     </section>
