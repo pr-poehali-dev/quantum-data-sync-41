@@ -8,7 +8,7 @@ const slides = [
     subtitle: "КрасГМУ — ведущий медицинский университет Сибири. 85 лет подготовки специалистов, которые меняют здравоохранение страны.",
     cta: "Подать заявку",
     ctaSecond: "О университете",
-    image: "https://cdn.poehali.dev/projects/10314730-e5f5-4420-9775-f734c4efc3b5/files/1574e0ea-805d-4f68-86e6-7e73247837de.jpg",
+    image: "https://cdn.poehali.dev/projects/10314730-e5f5-4420-9775-f734c4efc3b5/bucket/eadd84b9-a327-4b47-8567-31efe689ce6c.png",
   },
   {
     tag: "Наука и практика",
@@ -16,7 +16,7 @@ const slides = [
     subtitle: "Симуляционный центр мирового класса, 50+ клинических баз и партнёрство с университетами 30 стран.",
     cta: "Наши программы",
     ctaSecond: "Центр науки",
-    image: "https://cdn.poehali.dev/projects/10314730-e5f5-4420-9775-f734c4efc3b5/files/245b130d-d6ee-4574-9d12-c044e3662d8b.jpg",
+    image: "https://cdn.poehali.dev/projects/10314730-e5f5-4420-9775-f734c4efc3b5/bucket/eadd84b9-a327-4b47-8567-31efe689ce6c.png",
   },
 ]
 
