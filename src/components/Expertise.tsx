@@ -77,7 +77,7 @@ export function Expertise() {
         {/* Stats row */}
         <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-5">
           {[
-            { val: "85+", label: "лет истории", icon: "Clock" },
+            { val: "80+", label: "лет истории", icon: "Clock" },
             { val: "12 000", label: "студентов сегодня", icon: "Users" },
             { val: "70+", label: "кафедр и лабораторий", icon: "BookOpen" },
             { val: "95%", label: "выпускников трудоустроены", icon: "TrendingUp" },

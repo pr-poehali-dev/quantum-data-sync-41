@@ -102,7 +102,7 @@ export function Hero() {
         {/* Stats overlay bottom right */}
         <div className="absolute bottom-8 right-8 hidden lg:flex items-center gap-8 bg-black/30 backdrop-blur-sm border border-white/10 rounded-2xl px-8 py-5">
           {[
-            { value: "85+", label: "лет истории" },
+            { value: "80+", label: "лет истории" },
             { value: "12 000", label: "студентов" },
             { value: "95%", label: "трудоустройство" },
           ].map((s) => (
